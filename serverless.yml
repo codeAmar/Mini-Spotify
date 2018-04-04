@@ -38,6 +38,10 @@ functions:
       - s3:
           bucket: ${self:custom.bucket}
           event: s3:ObjectRemoved:*
+      
+  getfile:
+    handler: controller/get.getfile
+    
             
 resources:
   Resources:
