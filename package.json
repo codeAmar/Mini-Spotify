@@ -1,0 +1,27 @@
+{
+  "name": "minispotify",
+  "version": "1.0.0",
+  "description": "serverless mini spotify",
+  "main": "serverless.yml",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeAmar/Mini-Spotify.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "codeamar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codeAmar/Mini-Spotify/issues"
+  },
+  "homepage": "https://github.com/codeAmar/Mini-Spotify#readme",
+  "dependencies": {
+    "aws-sdk": "^2.220.1",
+    "node-fetch": "^2.1.2",
+    "uuid": "^3.2.1"
+  }
+}
