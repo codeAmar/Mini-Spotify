@@ -15,4 +15,36 @@ For the purposes of simplicity, I will be making several small txt files
 to stand in for MP3s/OGG(other audio files)
 
 #### Usage
-*still in progress*
+- Install Serverless framework and setup AWS credentials.
+
+- Clone this repository and deploy it on AWS using 
+    ```sh
+    sudo serverless deploy
+    ```
+- All the following are the different lambda functions which can be invoked by typing particular command on terminal.
+    - A services that adds all of your audio files in an S3 bucket to a DynamoDB database.
+    ```sh
+
+    sudo serverless invoke --function insertfile --log --data=' { "fileurl" : "http://www.ohchr.org/EN/UDHR/Documents/UDHR_Translations/eng.pdf", "key" : "document12.pdf" } '
+
+    ##This function takes a url from internet and post that file into S3 bucket and dynamoDb.
+    
+    ```
+    - A service that allows a user to search for a song(the name of the file) or returns a list of all of the songs(files) you have in your S3 bucket
+    ```sh
+    ##List all the files inside the bucket.
+
+    sudo serverless invoke --function getfile –log
+
+    ##Get the specific file inside the bucket.
+
+    sudo serverless invoke --function getfile --log --data=' { "key" : "document10.pdf" } '
+
+    ```
+    - Create a playlist and insert into dynamodb
+    ```sh
+
+    sudo serverless invoke --function createplaylist --log --data=' { "playlist": 	"myplaylist" , "key" : "document10.pdf" } '
+
+    #Function checks file inside the common bucket, if it is present their, it insert file name(primary_key) in new table with playlist name.
+    ```
