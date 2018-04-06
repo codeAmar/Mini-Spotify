@@ -31,17 +31,12 @@ functions:
       - s3:
           bucket: ${self:custom.bucket}
           event: s3:ObjectCreated:Post
-
-  deletefile:
-    handler: controller/delete.deletefile
-    events:
-      - s3:
-          bucket: ${self:custom.bucket}
-          event: s3:ObjectRemoved:*
       
   getfile:
     handler: controller/get.getfile
-    
+
+  createplaylist:
+    handler: controller/playlist.createplaylist  
             
 resources:
   Resources:
@@ -60,3 +55,18 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: 'SpotifyTable'
+    PlaylistTableDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: 'fileName'
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: 'fileName'
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: 'PlaylistTable'

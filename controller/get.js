@@ -53,7 +53,7 @@ module.exports.getfile = (event, context, callback) => {
       } else {
         const response = {
           statusCode: 200,
-          body: JSON.stringify(data.ETag),
+          body: JSON.parse(data.ETag),
         };
         callback(null, response);
       }
